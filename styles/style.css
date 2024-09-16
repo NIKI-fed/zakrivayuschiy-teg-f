@@ -348,6 +348,10 @@ dialog::backdrop {
   filter: invert(0.6);
 }
 
+.multyfilter {
+  filter: brightness(150%) hue-rotate(90deg) grayscale(0.1);
+}
+
 /*Красотища для модального окна:
 плавное появление и скрытие*/
 
