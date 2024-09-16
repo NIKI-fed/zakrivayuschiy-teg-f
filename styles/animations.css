@@ -12,3 +12,161 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+/*Стрелка слева от пунктов меню*/
+
+.theme-menu__button:disabled::before {
+  content: '▶';
+  position: absolute;
+  opacity: 0.6;
+  animation: arrow 0.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes arrow {
+    from {
+      left: -16px;
+    }
+    to {
+      left: -12px;
+    }
+  }
+
+  /*Работа над сердцем*/
+
+.sparks {
+  opacity: 0;
+}
+
+/*Начальное состояние слоёв*/
+
+.like-icon .core {
+  fill: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s 0.03s linear;
+}
+
+.like-icon .main-body {
+  fill: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.like-icon .contour {
+  fill: var(--accent-color);
+  transition: fill 0.1s linear;
+}
+
+/*Состояние слоёв при ховере*/
+
+.like-icon:hover .core {
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+
+.like-icon:hover .main-body {
+  opacity: 1;
+  transition: opacity 0.3s 0.05s linear;
+}
+
+/*Нажимаем и удерживаем сердце*/
+
+.like-icon:active .core {
+  fill: var(--body-heart);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:active .main-body {
+  fill: var(--body-heart);
+  transition: fill 0.3s 0.05s linear;
+}
+
+/*Клик по сердцу*/
+
+.like-icon.is-liked .core {
+  fill: var(--body-heart);
+  opacity: 1;
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--body-heart);
+  opacity: 1;
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--body-heart);
+  transition: fill 0.3s linear 0.06s;
+}
+
+/*Анимация увеличения сердца и появления искр*/
+
+.like-icon.is-liked .heart {
+  animation: zoom-zoom 0.3s ease-in 0.1s;
+  transform-origin: center;
+}
+
+@keyframes zoom-zoom {
+  from {
+    scale: 1;
+  }
+  50% {
+    scale: 1.5;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+.like-icon.is-liked .sparks {
+  animation: star 0.3s ease-in 0.3s
+}
+
+@keyframes star {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*Текст в кнопках меняет прозрачность при наведении, как в видео в задании
+
+.button__text {
+  animation: color-text-back 0.5s ease 0.1s;
+}
+
+@keyframes color-text-back {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card__like:hover .button__text,
+.footer__save-button:hover .button__text,
+.footer__save-button:hover .img__floppy {
+  animation: color-text 0.5s ease 0.1s;
+}
+
+@keyframes color-text {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+*/
