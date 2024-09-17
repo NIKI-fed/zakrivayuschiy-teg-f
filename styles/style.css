@@ -16,8 +16,8 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-family: var(--font-family-text), sans-serif;
-  font-variation-settings: 'wght' var(--font-weight-text);
+  font-family: var(--font-family-text, "Inter", sans-serif);
+  font-variation-settings: "wght" var(--font-weight-text);
   background-color: var(--background-color);
   color: var(--accent-color);
   background-image: var(--background-image);
@@ -30,12 +30,13 @@
   background-color: var(--background-color);
   width: clamp(375px, 16.2852rem + 30.5164vw, 700px);
   margin: 100px auto;
-  font-family: var(--font-family-accent);
+  font-family: var(--font-family-accent, "PressStart2P", fantasy);
   text-transform: uppercase;
   text-align: center;
 }
 
 .header__title {
+  display: block;
   padding-block: clamp(120px, 7.1479rem + 1.5023vw, 136px) 20px;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
 }
@@ -48,9 +49,9 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  gap: 0.7em;
   margin-left: clamp(147px, 5.4313rem + 15.493vw, 310px);
   padding-block: 23px;
-  gap: 10px;
   font-size: 14px;
 }
 
@@ -60,6 +61,7 @@
   background: transparent;
   cursor: pointer;
   position: relative;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:disabled {
@@ -70,7 +72,6 @@
 
 .theme-menu__button:hover {
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:focus {
@@ -81,7 +82,7 @@
 /*Подчёркивание пунктов меню при focus-visible*/
 
 .theme-menu__button::after {
-  content: '';
+  content: "";
   display: block;
   width: 0%;
   height: 2px;
@@ -113,10 +114,10 @@
 }
 
 .card__title {
-  padding: 6px 10px 3px;
+  padding: 5px 10px 3px;
   font-size: 18px;
-  line-height: 1.2;
-  font-weight: var(--font-weight-heading);
+  line-height: 1.25;
+  font-variation-settings: "wght" var(--font-weight-heading);
   border-bottom: 2px solid var(--accent-color);
 }
 
@@ -139,38 +140,38 @@
   position: absolute;
   top: 23px;
   right: clamp(10px, 0.5484rem + 1.1268vw, 25px);
-  font-family: var(--font-family-accent);
+  font-family: var(--font-family-accent, "PressStart2P", fantasy);
   font-weight: var(--font-weight-text);
   text-transform: uppercase;
   font-size: 14px;
   opacity: 0.5;
-  text-shadow:  1px 0px var(--background-color),
-                -1px 0px var(--background-color),
-                0px -1px var(--background-color),
-                0px 1px var(--background-color);
+  text-shadow: 1px 0px var(--background-color), -1px 0px var(--background-color),
+    0px -1px var(--background-color), 0px 1px var(--background-color);
   mix-blend-mode: hard-light;
 }
 
-@supports((text-stroke: 1px var(--background-color)) or (-webkit-text-stroke: 1px var(--background-color))) {
+@supports (
+  (text-stroke: 1px var(--background-color)) or
+    (-webkit-text-stroke: 1px var(--background-color))
+) {
   .label {
-      -webkit-text-stroke: 1px var(--background-color);
-      text-stroke: 1px var(--background-color);
-      text-shadow: none;
+    -webkit-text-stroke: 1px var(--background-color);
+    text-stroke: 1px var(--background-color);
+    text-shadow: none;
   }
-} 
+}
 
 .card__text {
   display: flex;
   flex-direction: column;
   gap: 27px;
-  padding: 25px 32px 0 25px;
+  padding: 24px 26px 0;
   border-top: 2px solid var(--accent-color);
 }
 
 .card__text-content {
   font-size: 18px;
   line-height: 1.17;
-  letter-spacing: 0.5px;
 }
 
 .card__like {
@@ -189,7 +190,7 @@
 
 .button:focus {
   outline: none;
-} 
+}
 
 .card__like-button {
   border: 2px solid var(--accent-color);
@@ -199,7 +200,7 @@
 }
 
 .button__text {
-  font-family: var(--font-family-accent);
+  font-family: var(--font-family-accent, "PressStart2P", fantasy);
   font-size: 14px;
   font-weight: var(--font-weight-text);
   position: relative;
@@ -209,15 +210,18 @@
   display: block;
 }
 
+.button-style {
+  transition: box-shadow 0.3s ease;
+}
+
 /*Состояния кнопок*/
 
 .button-style:focus-visible {
   box-shadow: 2px 2px var(--accent-color);
-  transition: box-shadow 0.3s ease;
 }
 
 .button-style::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   inset: 0;
@@ -235,18 +239,18 @@
   border: 2px solid transparent;
   display: flex;
   padding: 0;
+  transition: border 0.3s ease;
 }
 
 .card__icon-button:focus-visible {
   border: 2px solid var(--accent-color);
-  transition: border 0.3s ease;
 }
 
 /*Футер*/
 
 .footer {
   width: 100%;
-  margin-bottom: 100px;
+  margin-block: 50px 100px;
 }
 
 .footer__save-button {
@@ -265,19 +269,19 @@
 .img__floppy {
   inline-size: 28px;
   mix-blend-mode: difference;
-} 
+}
 
 /*Модальное окно*/
 
 dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.3);
-  backdrop-filter: blur(7px);
-} 
+  background-color: rgba(0, 0, 0, 0.75);
+  /* backdrop-filter: blur(7px); */
+}
 
 .modal {
   inline-size: clamp(341px, 21.0044rem + 1.3146vw, 355px);
-  block-size: 194px;
-  padding: 0 40px;
+  block-size: min-content;
+  padding: 30px 40px;
   border: 2px solid var(--accent-color);
   background-color: var(--background-color);
   color: var(--color-difference-text);
@@ -288,6 +292,7 @@ dialog::backdrop {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 30px
 }
 
 .modal__block {
@@ -302,7 +307,7 @@ dialog::backdrop {
 }
 
 .modal__text {
-  font-family: var(--font-family-accent);
+  font-family: var(--font-family-accent, "PressStart2P", fantasy);
   color: var(--accent-color);
   font-size: 14px;
   line-height: 1.5;
@@ -312,6 +317,7 @@ dialog::backdrop {
 .modal__button {
   width: 100%;
   padding-block: 11px;
+  text-transform: uppercase;
 }
 
 /*Фильтры для картинок*/
@@ -378,6 +384,6 @@ opacity: 0;
     inline-size: 21px;
   }
   .modal {
-    padding: 0 30px;
+    padding: 30px;
   }
 }
